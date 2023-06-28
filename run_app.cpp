@@ -27,7 +27,7 @@ void displayMenu() {
     std::cout << verticalLine << " " << red << "3" << reset << " :  Pose Estimation           " << green << "✔" << reset << verticalLine << std::endl;
     std::cout << verticalLine << " " << red << "4" << reset << " :  Optic Flow Map            " << green << "✔" << reset << verticalLine << std::endl;
     std::cout << verticalLine << " " << red << "5" << reset << " :  Stereo Disparity (Video)  " << green << "✔" << reset << verticalLine << std::endl;
-    std::cout << verticalLine << " " << red << "6" << reset << " :  Stereo Disparity (Camera) " << red << "✘" << reset << verticalLine << std::endl;
+    std::cout << verticalLine << " " << red << "6" << reset << " :  Stereo Disparity (Camera) " << green << "✔" << reset << verticalLine << std::endl;
     std::cout << verticalLine << " " << red << "7" << reset << " :  Depth Map Generation      " << red << "✘" << reset << verticalLine << std::endl;
     std::cout << verticalLine << " " << red << "8" << reset << " :  Exit                       " << verticalLine << std::endl;
     std::cout << horizontalLine << std::endl;
@@ -80,7 +80,7 @@ int main() {
                 break;
             case 6:
                 // Stereo Disparity Camera
-                std::system("gst-launch-1.0 v4l2src device=/dev/video2 ! image/jpeg, width=640, height=480, framerate=30/1 ! jpegdec ! video/x-raw ! queue ! sde.left_sink v4l2src device=/dev/video4 ! image/jpeg, width=640, height=480, framerate=30/1 ! jpegdec ! video/x-raw ! queue ! sde.right_sink tiovxsde name=sde ! tiovxsdeviz ! kmssink sync=false");
+                std::system("gst-launch-1.0 -v v4l2src device=/dev/video2 ! video/x-raw, format=YUY2, width=176, height=144, framerate=15/1, pixel-aspect-ratio=1/1, colorimetry=2:4:5:1, interlace-mode=progressive ! videoconvert ! queue ! sde.left_sink v4l2src device=/dev/video4 ! video/x-raw, format=YUY2, width=176, height=144, framerate=15/1, pixel-aspect-ratio=1/1, colorimetry=2:4:5:1, interlace-mode=progressive ! videoconvert ! queue ! sde.right_sink tiovxsde name=sde ! tiovxsdeviz ! kmssink sync=false");
                 break;
             case 7:
                 // Depth Map Generation
