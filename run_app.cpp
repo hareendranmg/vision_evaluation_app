@@ -22,14 +22,14 @@ void displayMenu() {
     std::cout << horizontalLine << std::endl;
     std::cout << verticalLine << " " << cyan << "Computer Vision Evaluation               " << reset << verticalLine << std::endl;
     std::cout << horizontalLine << std::endl;
-    std::cout << verticalLine << " " << red << "1" << reset << " :  Object Detection                   " << green << "✔" << reset << verticalLine << std::endl;
-    std::cout << verticalLine << " " << red << "2" << reset << " :  Semantic Segmentation              " << green << "✔" << reset << verticalLine << std::endl;
-    std::cout << verticalLine << " " << red << "3" << reset << " :  Pose Estimation                    " << green << "✔" << reset << verticalLine << std::endl;
-    std::cout << verticalLine << " " << red << "4" << reset << " :  Optic Flow Map                     " << green << "✔" << reset << verticalLine << std::endl;
-    std::cout << verticalLine << " " << red << "5" << reset << " :  Stereo Disparity (Video)           " << green << "✔" << reset << verticalLine << std::endl;
-    std::cout << verticalLine << " " << red << "6" << reset << " :  Stereo Disparity (Camera-Low Res)  " << green << "✔" << reset << verticalLine << std::endl;
-    std::cout << verticalLine << " " << red << "7" << reset << " :  Stereo Disparity (Camera-High Res) " << green << "✔" << reset << verticalLine << std::endl;
-    std::cout << verticalLine << " " << red << "8" << reset << " :  Depth Map Generation               " << red << "✘" << reset << verticalLine << std::endl;
+    std::cout << verticalLine << " " << red << "1" << reset << " :  Object Detection                    " << verticalLine << std::endl;
+    std::cout << verticalLine << " " << red << "2" << reset << " :  Semantic Segmentation               " << verticalLine << std::endl;
+    std::cout << verticalLine << " " << red << "3" << reset << " :  Pose Estimation                     " << verticalLine << std::endl;
+    std::cout << verticalLine << " " << red << "4" << reset << " :  Optic Flow Map                      " << verticalLine << std::endl;
+    std::cout << verticalLine << " " << red << "5" << reset << " :  Stereo Disparity (Video)            " << verticalLine << std::endl;
+    std::cout << verticalLine << " " << red << "6" << reset << " :  Stereo Disparity (Camera-Low Res)   " << verticalLine << std::endl;
+    std::cout << verticalLine << " " << red << "7" << reset << " :  Stereo Disparity (Camera-High Res)  " << verticalLine << std::endl;
+    std::cout << verticalLine << " " << red << "8" << reset << " :  Depth Map Generation                " << verticalLine << std::endl;
     std::cout << verticalLine << " " << red << "9" << reset << " :  Exit                                " << verticalLine << std::endl;
     std::cout << horizontalLine << std::endl;
 }
@@ -61,15 +61,15 @@ int main() {
         switch (option) {
             case 1:
                    // Object Detection
-                std::system("cd /opt/edgeai-gst-apps/apps_python && ./app_edgeai.py ../configs/object_detection.yaml");                // Add the command for Semantic Segmentation
+                std::system("cd /opt/edgeai-gst-apps/apps_cpp && ./bin/Release/app_edgeai ../configs/object_detection.yaml");
                 break;
             case 2:
                 // Semantic Segmentation
-                std::system("cd /opt/edgeai-gst-apps/apps_python && ./app_edgeai.py ../configs/semantic_segmentation.yaml");                // Add the command for Semantic Segmentation
+                std::system("cd /opt/edgeai-gst-apps/apps_cpp && ./bin/Release/app_edgeai ../configs/semantic_segmentation.yaml");
                 break;
             case 3:
                 // Pose Estimation
-                std::system("cd /opt/edgeai-gst-apps-6d-pose/apps_python && ./app_edgeai.py ../configs/object_6d_pose_estimation.yaml");
+                std::system("cd /opt/edgeai-gst-apps-6d-pose/apps_cpp && ./bin/Release/app_edgeai ../configs/object_6d_pose_estimation.yaml");
                 break;
             case 4:
                 // Optic Flow Map
@@ -89,9 +89,7 @@ int main() {
                 break;
             case 8:
                 // Depth Map Generation
-                std::system("clear");
-                std::cout << "Depth Map Generation Not Yet Implemented." << std::endl;
-                // Add the command for Depth Map Generation
+                std::system("cd ../fast_depth_inference && python3 app.py");
                 break;
             case 9:
                 // Exit
